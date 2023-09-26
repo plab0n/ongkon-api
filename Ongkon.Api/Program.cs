@@ -1,6 +1,8 @@
+using Ongkon.Business;
 using Ongkon.Business.CommandHandlers;
 using Ongkon.Contracts.Commands;
 using Ongkon.Contracts.Interfaces;
+using Ongkon.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICommandHandler<CreateWhiteBoardCommand>, CreateWhiteBoardCommandHandler>();
+builder.Services.AddSingleton<IDbClient, MongoDbClient>();
+builder.Services.AddTransient<IRepositoryContext<IRepository>, RepositoryContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

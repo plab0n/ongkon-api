@@ -5,9 +5,11 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ongkon.Api", "Ongkon.Api\Ongkon.Api.csproj", "{B5CCA429-29DB-4F02-BA7B-8C8B1CFB1BE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ongkon.Business", "Ongkon.Business\Ongkon.Business.csproj", "{B90086CD-2D58-4C2A-BB53-35948CD5A4D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ongkon.Business", "Ongkon.Business\Ongkon.Business.csproj", "{B90086CD-2D58-4C2A-BB53-35948CD5A4D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ongkon.Contracts", "Ongkon.Contracts\Ongkon.Contracts.csproj", "{CAC43EAC-F03E-4001-8322-75B62F8C90D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ongkon.Contracts", "Ongkon.Contracts\Ongkon.Contracts.csproj", "{CAC43EAC-F03E-4001-8322-75B62F8C90D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ongkon.Database", "Ongkon.Database\Ongkon.Database.csproj", "{0CDB985B-1208-46E8-86FA-FDA40D4E040A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{CAC43EAC-F03E-4001-8322-75B62F8C90D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAC43EAC-F03E-4001-8322-75B62F8C90D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAC43EAC-F03E-4001-8322-75B62F8C90D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CDB985B-1208-46E8-86FA-FDA40D4E040A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CDB985B-1208-46E8-86FA-FDA40D4E040A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CDB985B-1208-46E8-86FA-FDA40D4E040A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CDB985B-1208-46E8-86FA-FDA40D4E040A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

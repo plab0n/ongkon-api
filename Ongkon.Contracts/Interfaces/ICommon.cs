@@ -8,5 +8,4 @@ public interface ICommon
     public string ModifiedBy { get; set; }
     public DateTime ModifiedAt { get; set; }
     public DateTime DeletedAt { get; set; }
-    public string GetId();
 }

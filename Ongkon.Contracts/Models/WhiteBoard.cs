@@ -9,13 +9,13 @@ using Ongkon.Contracts.Interfaces;
 
 namespace Ongkon.Contracts.Models
 {
-    public class WhiteBoardModel : ICommon
+    public class WhiteBoard : ICommon, IRepository
     {
         public string Title { get; set; }
         public List<IWhiteBoardElements> WhiteBoardElements { get; set; }
         public List<string> Participants { get; set; }
 
-        public WhiteBoardModel()
+        public WhiteBoard()
         {
             WhiteBoardElements = new List<IWhiteBoardElements>();
             Participants = new List<string>();
