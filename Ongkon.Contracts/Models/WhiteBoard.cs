@@ -19,6 +19,7 @@ namespace Ongkon.Contracts.Models
         {
             WhiteBoardElements = new List<IWhiteBoardElements>();
             Participants = new List<string>();
+            CreatedAt = DateTime.Now;
         }
 
         public string Id { get; set; }
