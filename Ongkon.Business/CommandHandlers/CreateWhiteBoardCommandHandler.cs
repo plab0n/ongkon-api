@@ -33,7 +33,7 @@ namespace Ongkon.Business.CommandHandlers
             };
             await _repositoryContext.Save<WhiteBoard>("db", whiteBoard);
             var expandoObject = new ExpandoObject();
-            expandoObject.TryAdd("Id", "some_guid");
+            expandoObject.TryAdd("id", whiteBoard.Id);
             return expandoObject;
         }
     }
