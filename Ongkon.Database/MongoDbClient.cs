@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Operations.ElementNameValidators;
 using Ongkon.Contracts.Interfaces;
@@ -28,6 +29,13 @@ namespace Ongkon.Database
         public Task GetAll<T>(string db)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<T> GetItemByQuery<T>(IQuery query)
+        {
+            var filter = query.GetMongoQuery();
+            var bsonDocument = await _mongoClient.GetDatabase("").GetCollection<BsonDocument>(typeof(T).Name.ToLower()).FindAsync(filter);
+            return BsonSerializer.Deserialize<T>(bsonDocument.ToJson());
         }
 
         public Task GetById<T>(string db, string id)

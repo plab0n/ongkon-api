@@ -12,6 +12,7 @@ namespace Ongkon.Database
         Task Save<T>(string db, IRepository item);
         Task GetById<T>(string db, string id);
         Task GetAll<T>(string db);
+        Task<T> GetItemByQuery<T>(IQuery query);
     }
 
 }
