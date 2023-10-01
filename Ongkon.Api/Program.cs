@@ -21,7 +21,12 @@ builder.Services.AddTransient<IQueryHandler<WhiteBoard>, WhiteBoardQueryHandler>
 builder.Services.AddSingleton<IDbClient, MongoDbClient>();
 builder.Services.AddTransient<IRepositoryContext<IRepository>, RepositoryContext>();
 BsonClassMap.RegisterClassMap<WhiteBoard>();
-var objectSerializer = new ObjectSerializer(type => ObjectSerializer.DefaultAllowedTypes(type) || type.FullName.StartsWith("Ongkon.Contracts") || type.FullName.StartsWith("MongoDB.Bson"));
+var objectSerializer = new ObjectSerializer(type =>
+{
+    Console.WriteLine(type.FullName);
+    return ObjectSerializer.DefaultAllowedTypes(type) || type.FullName.StartsWith("Ongkon.Contracts") ||
+           type.FullName.StartsWith("MongoDB.Driver");
+});
 BsonSerializer.RegisterSerializer(objectSerializer);
 var app = builder.Build();
 

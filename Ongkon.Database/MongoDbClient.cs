@@ -34,8 +34,10 @@ namespace Ongkon.Database
         public async Task<T> GetItemByQuery<T>(IQuery query)
         {
             var filter = query.GetMongoQuery();
-            var bsonDocument = await _mongoClient.GetDatabase("db").GetCollection<BsonDocument>(typeof(T).Name.ToLower()).FindAsync(filter);
-            return BsonSerializer.Deserialize<T>(bsonDocument.ToJson());
+            var bsonDocument = (await _mongoClient.GetDatabase("db")
+                .GetCollection<BsonDocument>(typeof(T).Name.ToLower()).FindAsync(filter)).FirstOrDefault<BsonDocument>();
+            var json = bsonDocument.ToJson();
+            return BsonSerializer.Deserialize<T>(json);
         }
 
         public Task GetById<T>(string db, string id)

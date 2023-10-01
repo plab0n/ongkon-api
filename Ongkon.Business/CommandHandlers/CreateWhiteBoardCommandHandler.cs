@@ -17,6 +17,7 @@ namespace Ongkon.Business.CommandHandlers
         {
             _repositoryContext=repositoryContext;
         }
+
         public async Task<ExpandoObject> Handle(CreateWhiteBoardCommand command)
         {
             //Check if whiteboard with same title exists or not
