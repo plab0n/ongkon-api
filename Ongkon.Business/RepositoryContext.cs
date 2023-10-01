@@ -31,7 +31,7 @@ namespace Ongkon.Business
         }
     }
 
-    public interface IRepositoryContext<T>
+    public interface IRepositoryContext<T> where T : IRepository
     {
         Task Save<T>(string db, IRepository item);
         Task GetById<T>(string db, string id);

@@ -12,8 +12,8 @@ namespace Ongkon.Business.CommandHandlers
 {
     public class CreateWhiteBoardCommandHandler : ICommandHandler<CreateWhiteBoardCommand>
     {
-        private IRepositoryContext<IRepository> _repositoryContext;
-        public CreateWhiteBoardCommandHandler(IRepositoryContext<IRepository> repositoryContext)
+        private IRepositoryContext<WhiteBoard> _repositoryContext;
+        public CreateWhiteBoardCommandHandler(IRepositoryContext<WhiteBoard> repositoryContext)
         {
             _repositoryContext=repositoryContext;
         }
