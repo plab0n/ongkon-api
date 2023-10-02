@@ -40,9 +40,13 @@ namespace Ongkon.Database
             return BsonSerializer.Deserialize<T>(json);
         }
 
-        public Task GetById<T>(string db, string id)
+        public async Task<T> GetById<T>(string db, string id)
         {
-            throw new NotImplementedException();
+            var query = new BsonDocument("_id", id);
+            var bsonDocument = (await _mongoClient.GetDatabase("db")
+                .GetCollection<BsonDocument>(typeof(T).Name.ToLower()).FindAsync(query)).FirstOrDefault<BsonDocument>();
+            var json = bsonDocument.ToJson();
+            return BsonSerializer.Deserialize<T>(json);
         }
 
         public async Task Save<T>(string db, IRepository item)

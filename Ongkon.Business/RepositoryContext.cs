@@ -20,9 +20,9 @@ namespace Ongkon.Business
             await _dbClient.Save<T>(db, item);
         }
 
-        public Task GetById<T>(string db, string id)
+        public async Task<T> GetById<T>(string db, string id)
         {
-            throw new NotImplementedException();
+            return await _dbClient.GetById<T>(db, id);
         }
 
         public Task GetAll<T>(string db)
@@ -39,7 +39,7 @@ namespace Ongkon.Business
     public interface IRepositoryContext
     {
         Task Save<T>(string db, IRepository item);
-        Task GetById<T>(string db, string id);
+        Task<T> GetById<T>(string db, string id);
         Task GetAll<T>(string db);
         Task<T> GetItemByQuery<T>(IQuery query);
     }

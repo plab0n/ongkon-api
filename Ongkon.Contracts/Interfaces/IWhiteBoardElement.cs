@@ -1,5 +1,5 @@
 ﻿namespace Ongkon.Contracts.Interfaces;
 
-public interface IWhiteBoardElements
+public interface IWhiteBoardElement
 {
 }

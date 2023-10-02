@@ -10,7 +10,7 @@ namespace Ongkon.Database
     public interface IDbClient
     {
         Task Save<T>(string db, IRepository item);
-        Task GetById<T>(string db, string id);
+        Task<T> GetById<T>(string db, string id);
         Task GetAll<T>(string db);
         Task<T> GetItemByQuery<T>(IQuery query);
     }

@@ -7,16 +7,12 @@ using Ongkon.Contracts.Interfaces;
 
 namespace Ongkon.Contracts.Models
 {
-    public class TextBody : IWhiteBoardElements
+    public class TextBody : IWhiteBoardElement
     {
     }
 
-    public class Shape : IWhiteBoardElements
-    {
 
-    }
-
-    public class Connector : IWhiteBoardElements
+    public class Connector : IWhiteBoardElement
     {
 
     }
