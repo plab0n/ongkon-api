@@ -9,7 +9,7 @@ using Ongkon.Contracts.Models;
 namespace Ongkon.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WhiteBoardController : ControllerBase
     {
         private ICommandHandler<CreateWhiteBoardCommand> _whiteBoardCommandHandlerHandler;
