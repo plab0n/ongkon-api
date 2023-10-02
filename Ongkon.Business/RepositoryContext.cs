@@ -8,7 +8,7 @@ using Ongkon.Database;
 
 namespace Ongkon.Business
 {
-    public class RepositoryContext : IRepositoryContext<IRepository> 
+    public class RepositoryContext : IRepositoryContext
     {
         private IDbClient _dbClient;
         public RepositoryContext(IDbClient dbClient)
@@ -36,7 +36,7 @@ namespace Ongkon.Business
         }
     }
 
-    public interface IRepositoryContext<T> where T : IRepository
+    public interface IRepositoryContext
     {
         Task Save<T>(string db, IRepository item);
         Task GetById<T>(string db, string id);

@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICommandHandler<CreateWhiteBoardCommand>, CreateWhiteBoardCommandHandler>();
 builder.Services.AddTransient<IQueryHandler<WhiteBoard>, WhiteBoardQueryHandler>();
 builder.Services.AddSingleton<IDbClient, MongoDbClient>();
-builder.Services.AddTransient<IRepositoryContext<IRepository>, RepositoryContext>();
+builder.Services.AddTransient<IRepositoryContext, RepositoryContext>();
 BsonClassMap.RegisterClassMap<WhiteBoard>();
 var objectSerializer = new ObjectSerializer(type =>
 {

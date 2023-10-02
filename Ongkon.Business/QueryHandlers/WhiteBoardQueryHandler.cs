@@ -10,8 +10,8 @@ namespace Ongkon.Business.QueryHandlers
 {
     public class WhiteBoardQueryHandler : IQueryHandler<WhiteBoard>
     {
-        private IRepositoryContext<IRepository> _repositoryContext;
-        public WhiteBoardQueryHandler(IRepositoryContext<IRepository> repositoryContext)
+        private IRepositoryContext _repositoryContext;
+        public WhiteBoardQueryHandler(IRepositoryContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
         }
