@@ -8,6 +8,7 @@ using Ongkon.Contracts.Interfaces;
 using Ongkon.Contracts.Models;
 using Ongkon.Database;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -30,6 +31,14 @@ var objectSerializer = new ObjectSerializer(type =>
            type.FullName.StartsWith("MongoDB.Driver");
 });
 BsonSerializer.RegisterSerializer(objectSerializer);
+
+
+builder.Services.AddCors(o => o.AddPolicy("AllowedOrigins", builder =>
+{
+    //TODO: For Prod environment we will allow only the configured cors
+    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,7 +47,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowedOrigins");
+app.UseRouting();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -46,3 +56,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public class Cors
+{
+    public string[] Origins { get; set; }
+}
