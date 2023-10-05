@@ -12,12 +12,13 @@ namespace Ongkon.Contracts.Models
     public class WhiteBoard : ICommon, IRepository
     {
         public string Title { get; set; }
-        public List<IWhiteBoardElement> WhiteBoardElements { get; set; }
+        public List<Node> Nodes { get; set; }
+        public List<Connector> Connectors { get; set; }
         public List<string> Participants { get; set; }
 
         public WhiteBoard()
         {
-            WhiteBoardElements = new List<IWhiteBoardElement>();
+            Nodes = new List<Node>();
             Participants = new List<string>();
             CreatedAt = DateTime.Now;
         }
@@ -33,9 +34,14 @@ namespace Ongkon.Contracts.Models
             return Id;
         }
 
-        public void AddElement(WhiteBoardElement whiteBoardElement)
+        public void AddNode(Node whiteBoardElement)
         {
-            WhiteBoardElements.Add(whiteBoardElement);
+            Nodes.Add(whiteBoardElement);
+        }
+
+        public void AddConnector(Connector connector)
+        {
+            Connectors.Add(connector);
         }
     }
 }

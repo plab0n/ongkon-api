@@ -25,14 +25,16 @@ namespace Ongkon.Business.CommandHandlers
             {
                 throw new Exception("Whiteboard not found");
             }
-            var whiteBoardElement = new WhiteBoardElement()
+            var whiteBoardElement = new Node()
             {
                 Id = Guid.NewGuid().ToString(),
                 Shape = command.Element.Shape,
                 OffsetX = command.Element.OffsetX,
                 OffsetY = command.Element.OffsetY,
+                Height = command.Element.Height,
+                Width = command.Element.Width,
             };
-            whiteBoard.AddElement(whiteBoardElement);
+            whiteBoard.AddNode(whiteBoardElement);
             await _repositoryContext.Save<WhiteBoard>("db", whiteBoard);
             return new ExpandoObject();
         }

@@ -19,5 +19,7 @@ namespace Ongkon.Contracts.Commands
         public Shape Shape { get; set; }
         public double OffsetX { get; set; }
         public double OffsetY { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
     }
 }

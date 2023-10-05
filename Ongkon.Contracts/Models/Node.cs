@@ -7,12 +7,14 @@ using Ongkon.Contracts.Interfaces;
 
 namespace Ongkon.Contracts.Models
 {
-    public class WhiteBoardElement : IWhiteBoardElement
+    public class Node
     {
         public string Id { get; set; }
         public Shape Shape { get; set; }
         public double OffsetX { get; set; }
         public double OffsetY { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
     }
     public class Shape
     {

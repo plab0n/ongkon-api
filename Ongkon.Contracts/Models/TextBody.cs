@@ -10,10 +10,4 @@ namespace Ongkon.Contracts.Models
     public class TextBody : IWhiteBoardElement
     {
     }
-
-
-    public class Connector : IWhiteBoardElement
-    {
-
-    }
 }
