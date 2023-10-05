@@ -16,7 +16,7 @@ namespace Ongkon.Contracts.Commands
     public class Element
     {
         public string Id { get; set; }
-        public Shape Shape { get; set; }
+        public ElementShape Shape { get; set; }
         public double OffsetX { get; set; }
         public double OffsetY { get; set; }
         public double Height { get; set; }

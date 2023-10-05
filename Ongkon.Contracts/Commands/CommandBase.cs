@@ -8,5 +8,11 @@ namespace Ongkon.Contracts.Commands
 {
     public class CommandBase
     {
+        public string Id { get; set; }
+
+        public CommandBase()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
     }
 }

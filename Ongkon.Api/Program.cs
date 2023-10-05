@@ -19,6 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ICommandHandler<CreateWhiteBoardCommand>, CreateWhiteBoardCommandHandler>();
 builder.Services.AddTransient<ICommandHandler<AddElementCommand>, AddElementCommandHandler>();
+builder.Services.AddTransient<ICommandHandler<AddNodeCommand>, AddNodeCommandHandler>();
 
 builder.Services.AddTransient<IQueryHandler<WhiteBoard>, WhiteBoardQueryHandler>();
 builder.Services.AddSingleton<IDbClient, MongoDbClient>();

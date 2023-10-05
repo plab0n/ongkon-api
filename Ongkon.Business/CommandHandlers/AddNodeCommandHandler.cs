@@ -10,29 +10,26 @@ using Ongkon.Contracts.Models;
 
 namespace Ongkon.Business.CommandHandlers
 {
-    public class AddElementCommandHandler : ICommandHandler<AddElementCommand>
+    public class AddNodeCommandHandler : ICommandHandler<AddNodeCommand>
     {
         private IRepositoryContext _repositoryContext;
-        public AddElementCommandHandler(IRepositoryContext repositoryContext)
+        public AddNodeCommandHandler(IRepositoryContext repositoryContext)
         {
             _repositoryContext = repositoryContext;
         }
-        public async Task<ExpandoObject> Handle(AddElementCommand command)
+        public async Task<ExpandoObject> Handle(AddNodeCommand command)
         {
-            //TODO: Validate command
             var whiteBoard = await _repositoryContext.GetById<WhiteBoard>("db", command.WhiteBoardId);
-            if (whiteBoard == null)
-            {
-                throw new Exception("Whiteboard not found");
-            }
-            var whiteBoardElement = new Node()
+            var node = new Node()
             {
                 Id = Guid.NewGuid().ToString(),
-                Shape = command.Element.Shape,
-                Height = command.Element.Height,
-                Width = command.Element.Width,
+                Shape = command.Shape,
+                Height = command.Height,
+                Width = command.Width,
+                Position = command.Position
             };
-            whiteBoard.AddNode(whiteBoardElement);
+            whiteBoard.AddNode(node);
+            //ToDO: In case of concurrent write there might be inconsistencies. Need to resolve it. A simple solution might be to switch to a relational db.
             await _repositoryContext.Save<WhiteBoard>("db", whiteBoard);
             return new ExpandoObject();
         }

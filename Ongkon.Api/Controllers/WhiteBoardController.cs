@@ -15,12 +15,14 @@ namespace Ongkon.Api.Controllers
         private ICommandHandler<CreateWhiteBoardCommand> _whiteBoardCommandHandlerHandler;
         private ICommandHandler<AddElementCommand> _addElementCommandHandler;
         private IQueryHandler<WhiteBoard> _whiteBoardQueryHandler;
+        private ICommandHandler<AddNodeCommand> _addNodeCommandHandler;
         public WhiteBoardController(ICommandHandler<CreateWhiteBoardCommand> commandHandler, 
             IQueryHandler<WhiteBoard> whiteBoardQueryHandler, 
-            ICommandHandler<AddElementCommand> addElementCommandHandler)
+            ICommandHandler<AddElementCommand> addElementCommandHandler, ICommandHandler<AddNodeCommand> addNodeCommandHandler)
         {
             _whiteBoardCommandHandlerHandler = commandHandler;
             _addElementCommandHandler = addElementCommandHandler;
+            _addNodeCommandHandler = addNodeCommandHandler;
             _whiteBoardQueryHandler = whiteBoardQueryHandler;
         }
         [HttpPost("Create")]
@@ -62,6 +64,21 @@ namespace Ongkon.Api.Controllers
             try
             {
                 var data = await _addElementCommandHandler.Handle(command);
+                // var response = new HttpResponseMessage();
+                // response.Content.CopyToAsync(data)
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ExpandoObject().TryAdd("error", e.Message));
+            }
+        }
+        [HttpPost("Node/Add")]
+        public async Task<IActionResult> AddNode(AddNodeCommand command)
+        {
+            try
+            {
+                var data = await _addNodeCommandHandler.Handle(command);
                 // var response = new HttpResponseMessage();
                 // response.Content.CopyToAsync(data)
                 return Ok(data);
