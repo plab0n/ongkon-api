@@ -16,13 +16,15 @@ namespace Ongkon.Api.Controllers
         private ICommandHandler<AddElementCommand> _addElementCommandHandler;
         private IQueryHandler<WhiteBoard> _whiteBoardQueryHandler;
         private ICommandHandler<AddNodeCommand> _addNodeCommandHandler;
+        private ICommandHandler<AddNodeAnnotationCommand> _addNodeAnnotationCommandHandler;
         public WhiteBoardController(ICommandHandler<CreateWhiteBoardCommand> commandHandler, 
             IQueryHandler<WhiteBoard> whiteBoardQueryHandler, 
-            ICommandHandler<AddElementCommand> addElementCommandHandler, ICommandHandler<AddNodeCommand> addNodeCommandHandler)
+            ICommandHandler<AddElementCommand> addElementCommandHandler, ICommandHandler<AddNodeCommand> addNodeCommandHandler, ICommandHandler<AddNodeAnnotationCommand> addNodeAnnotationCommandHandler)
         {
             _whiteBoardCommandHandlerHandler = commandHandler;
             _addElementCommandHandler = addElementCommandHandler;
             _addNodeCommandHandler = addNodeCommandHandler;
+            _addNodeAnnotationCommandHandler = addNodeAnnotationCommandHandler;
             _whiteBoardQueryHandler = whiteBoardQueryHandler;
         }
         [HttpPost("Create")]
@@ -79,6 +81,21 @@ namespace Ongkon.Api.Controllers
             try
             {
                 var data = await _addNodeCommandHandler.Handle(command);
+                // var response = new HttpResponseMessage();
+                // response.Content.CopyToAsync(data)
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ExpandoObject().TryAdd("error", e.Message));
+            }
+        }
+        [HttpPost("Node/AddAnnotation")]
+        public async Task<IActionResult> AddNode(AddNodeAnnotationCommand command)
+        {
+            try
+            {
+                var data = await _addNodeAnnotationCommandHandler.Handle(command);
                 // var response = new HttpResponseMessage();
                 // response.Content.CopyToAsync(data)
                 return Ok(data);
