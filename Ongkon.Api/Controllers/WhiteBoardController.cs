@@ -17,14 +17,16 @@ namespace Ongkon.Api.Controllers
         private IQueryHandler<WhiteBoard> _whiteBoardQueryHandler;
         private ICommandHandler<AddNodeCommand> _addNodeCommandHandler;
         private ICommandHandler<AddNodeAnnotationCommand> _addNodeAnnotationCommandHandler;
+        private ICommandHandler<AddConnectorCommand> _addConnectorCommandHandler;
         public WhiteBoardController(ICommandHandler<CreateWhiteBoardCommand> commandHandler, 
             IQueryHandler<WhiteBoard> whiteBoardQueryHandler, 
-            ICommandHandler<AddElementCommand> addElementCommandHandler, ICommandHandler<AddNodeCommand> addNodeCommandHandler, ICommandHandler<AddNodeAnnotationCommand> addNodeAnnotationCommandHandler)
+            ICommandHandler<AddElementCommand> addElementCommandHandler, ICommandHandler<AddNodeCommand> addNodeCommandHandler, ICommandHandler<AddNodeAnnotationCommand> addNodeAnnotationCommandHandler, ICommandHandler<AddConnectorCommand> addConnectorCommandHandler)
         {
             _whiteBoardCommandHandlerHandler = commandHandler;
             _addElementCommandHandler = addElementCommandHandler;
             _addNodeCommandHandler = addNodeCommandHandler;
             _addNodeAnnotationCommandHandler = addNodeAnnotationCommandHandler;
+            _addConnectorCommandHandler = addConnectorCommandHandler;
             _whiteBoardQueryHandler = whiteBoardQueryHandler;
         }
         [HttpPost("Create")]
@@ -91,11 +93,26 @@ namespace Ongkon.Api.Controllers
             }
         }
         [HttpPost("Node/AddAnnotation")]
-        public async Task<IActionResult> AddNode(AddNodeAnnotationCommand command)
+        public async Task<IActionResult> AddNodeAnnotation(AddNodeAnnotationCommand command)
         {
             try
             {
                 var data = await _addNodeAnnotationCommandHandler.Handle(command);
+                // var response = new HttpResponseMessage();
+                // response.Content.CopyToAsync(data)
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ExpandoObject().TryAdd("error", e.Message));
+            }
+        }
+        [HttpPost("Connector/Add")]
+        public async Task<IActionResult> AddNode(AddConnectorCommand command)
+        {
+            try
+            {
+                var data = await _addConnectorCommandHandler.Handle(command);
                 // var response = new HttpResponseMessage();
                 // response.Content.CopyToAsync(data)
                 return Ok(data);

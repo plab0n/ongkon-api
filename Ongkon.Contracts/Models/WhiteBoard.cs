@@ -19,6 +19,7 @@ namespace Ongkon.Contracts.Models
         public WhiteBoard()
         {
             Nodes = new List<Node>();
+            Connectors = new List<Connector>();
             Participants = new List<string>();
             CreatedAt = DateTime.Now;
         }
@@ -41,6 +42,10 @@ namespace Ongkon.Contracts.Models
 
         public void AddConnector(Connector connector)
         {
+            if (Connectors == null)
+            {
+                Connectors = new List<Connector>();
+            }
             Connectors.Add(connector);
         }
 
