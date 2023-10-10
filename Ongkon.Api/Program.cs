@@ -23,6 +23,7 @@ builder.Services.AddTransient<ICommandHandler<AddNodeCommand>, AddNodeCommandHan
 builder.Services.AddTransient<ICommandHandler<AddNodeAnnotationCommand>, AddNodeAnnotationCommandHandler>();
 builder.Services.AddTransient<ICommandHandler<AddConnectorCommand>, AddConnectorCommandHandler>();
 builder.Services.AddTransient<ICommandHandler<UpdateSourcePointCommand>, UpdateSourcePointCommandHandler>();
+builder.Services.AddTransient<ICommandHandler<UpdateNodePositionCommand>, UpdateNodePositionCommandHandler>();
 
 builder.Services.AddTransient<IQueryHandler<WhiteBoard>, WhiteBoardQueryHandler>();
 builder.Services.AddSingleton<IDbClient, MongoDbClient>();
