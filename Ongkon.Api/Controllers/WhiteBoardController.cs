@@ -18,15 +18,21 @@ namespace Ongkon.Api.Controllers
         private ICommandHandler<AddNodeCommand> _addNodeCommandHandler;
         private ICommandHandler<AddNodeAnnotationCommand> _addNodeAnnotationCommandHandler;
         private ICommandHandler<AddConnectorCommand> _addConnectorCommandHandler;
+        private ICommandHandler<UpdateSourcePointCommand> _updateSourcePointCommandHandler;
         public WhiteBoardController(ICommandHandler<CreateWhiteBoardCommand> commandHandler, 
             IQueryHandler<WhiteBoard> whiteBoardQueryHandler, 
-            ICommandHandler<AddElementCommand> addElementCommandHandler, ICommandHandler<AddNodeCommand> addNodeCommandHandler, ICommandHandler<AddNodeAnnotationCommand> addNodeAnnotationCommandHandler, ICommandHandler<AddConnectorCommand> addConnectorCommandHandler)
+            ICommandHandler<AddElementCommand> addElementCommandHandler, 
+            ICommandHandler<AddNodeCommand> addNodeCommandHandler, 
+            ICommandHandler<AddNodeAnnotationCommand> addNodeAnnotationCommandHandler, 
+            ICommandHandler<AddConnectorCommand> addConnectorCommandHandler, 
+            ICommandHandler<UpdateSourcePointCommand> updateSourcePointCommandHandler)
         {
             _whiteBoardCommandHandlerHandler = commandHandler;
             _addElementCommandHandler = addElementCommandHandler;
             _addNodeCommandHandler = addNodeCommandHandler;
             _addNodeAnnotationCommandHandler = addNodeAnnotationCommandHandler;
             _addConnectorCommandHandler = addConnectorCommandHandler;
+            _updateSourcePointCommandHandler = updateSourcePointCommandHandler;
             _whiteBoardQueryHandler = whiteBoardQueryHandler;
         }
         [HttpPost("Create")]
@@ -113,6 +119,21 @@ namespace Ongkon.Api.Controllers
             try
             {
                 var data = await _addConnectorCommandHandler.Handle(command);
+                // var response = new HttpResponseMessage();
+                // response.Content.CopyToAsync(data)
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ExpandoObject().TryAdd("error", e.Message));
+            }
+        }
+        [HttpPost("Connector/Update/SourcePoint")]
+        public async Task<IActionResult> AddNode(UpdateSourcePointCommand command)
+        {
+            try
+            {
+                var data = await _updateSourcePointCommandHandler.Handle(command);
                 // var response = new HttpResponseMessage();
                 // response.Content.CopyToAsync(data)
                 return Ok(data);

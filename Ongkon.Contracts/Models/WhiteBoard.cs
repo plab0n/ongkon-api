@@ -53,5 +53,10 @@ namespace Ongkon.Contracts.Models
         {
             return Nodes.FirstOrDefault(o => o.Id.Equals(nodeId));
         }
+
+        public Connector? GetConnector(string connectorId)
+        {
+            return Connectors.FirstOrDefault(o => o.Id.Equals(connectorId));
+        }
     }
 }

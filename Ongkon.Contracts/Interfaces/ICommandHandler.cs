@@ -9,7 +9,7 @@ using Ongkon.Contracts.Commands;
 
 namespace Ongkon.Contracts.Interfaces
 {
-    public interface ICommandHandler<T> where T : CommandBase
+    public interface ICommandHandler<T>
     {
         Task<ExpandoObject> Handle(T command);
     }
