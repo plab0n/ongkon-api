@@ -20,13 +20,15 @@ namespace Ongkon.Api.Controllers
         private ICommandHandler<AddConnectorCommand> _addConnectorCommandHandler;
         private ICommandHandler<UpdateSourcePointCommand> _updateSourcePointCommandHandler;
         private ICommandHandler<UpdateNodePositionCommand> _updateNodePositionCommandHandler;
+        private ICommandHandler<UpdateConnectorPositionCommand> _updateConnectorPositionCommandHandler;
+        private ICommandHandler<UpdateConnectorTargetPointCommand> _updateConnectorTargetPointCommandHandler;
         public WhiteBoardController(ICommandHandler<CreateWhiteBoardCommand> commandHandler, 
             IQueryHandler<WhiteBoard> whiteBoardQueryHandler, 
             ICommandHandler<AddElementCommand> addElementCommandHandler, 
             ICommandHandler<AddNodeCommand> addNodeCommandHandler, 
             ICommandHandler<AddNodeAnnotationCommand> addNodeAnnotationCommandHandler, 
             ICommandHandler<AddConnectorCommand> addConnectorCommandHandler, 
-            ICommandHandler<UpdateSourcePointCommand> updateSourcePointCommandHandler, ICommandHandler<UpdateNodePositionCommand> updateNodePositionCommandHandler)
+            ICommandHandler<UpdateSourcePointCommand> updateSourcePointCommandHandler, ICommandHandler<UpdateNodePositionCommand> updateNodePositionCommandHandler, ICommandHandler<UpdateConnectorPositionCommand> updateConnectorPositionCommandHandler, ICommandHandler<UpdateConnectorTargetPointCommand> updateConnectorTargetPointCommandHandler)
         {
             _whiteBoardCommandHandlerHandler = commandHandler;
             _addElementCommandHandler = addElementCommandHandler;
@@ -35,6 +37,8 @@ namespace Ongkon.Api.Controllers
             _addConnectorCommandHandler = addConnectorCommandHandler;
             _updateSourcePointCommandHandler = updateSourcePointCommandHandler;
             _updateNodePositionCommandHandler = updateNodePositionCommandHandler;
+            _updateConnectorPositionCommandHandler = updateConnectorPositionCommandHandler;
+            _updateConnectorTargetPointCommandHandler = updateConnectorTargetPointCommandHandler;
             _whiteBoardQueryHandler = whiteBoardQueryHandler;
         }
         [HttpPost("Create")]
@@ -146,11 +150,41 @@ namespace Ongkon.Api.Controllers
             }
         }
         [HttpPost("Connector/Update/SourcePoint")]
-        public async Task<IActionResult> AddNode(UpdateSourcePointCommand command)
+        public async Task<IActionResult> UpdateSourcePoint(UpdateSourcePointCommand command)
         {
             try
             {
                 var data = await _updateSourcePointCommandHandler.Handle(command);
+                // var response = new HttpResponseMessage();
+                // response.Content.CopyToAsync(data)
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ExpandoObject().TryAdd("error", e.Message));
+            }
+        }
+        [HttpPost("Connector/Update/Position")]
+        public async Task<IActionResult> UpdatePosition(UpdateConnectorPositionCommand command)
+        {
+            try
+            {
+                var data = await _updateConnectorPositionCommandHandler.Handle(command);
+                // var response = new HttpResponseMessage();
+                // response.Content.CopyToAsync(data)
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ExpandoObject().TryAdd("error", e.Message));
+            }
+        }
+        [HttpPost("Connector/Update/TargetPoint")]
+        public async Task<IActionResult> UpdateConnectorTargetPoint(UpdateConnectorTargetPointCommand command)
+        {
+            try
+            {
+                var data = await _updateConnectorTargetPointCommandHandler.Handle(command);
                 // var response = new HttpResponseMessage();
                 // response.Content.CopyToAsync(data)
                 return Ok(data);
