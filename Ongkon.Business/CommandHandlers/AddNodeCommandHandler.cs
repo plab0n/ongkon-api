@@ -26,7 +26,8 @@ namespace Ongkon.Business.CommandHandlers
                 Shape = command.Shape,
                 Height = command.Height,
                 Width = command.Width,
-                Position = command.Position
+                Position = command.Position,
+                Text = command.Text,
             };
             whiteBoard.AddNode(node);
             //ToDO: In case of concurrent write there might be inconsistencies. Need to resolve it. A simple solution might be to switch to a relational db.
