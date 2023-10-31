@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ongkon.Contracts.Commands;
+using Ongkon.Contracts.Constants;
 using Ongkon.Contracts.Interfaces;
 using Ongkon.Contracts.Models;
 
@@ -31,8 +32,9 @@ namespace Ongkon.Business.CommandHandlers
             {
                 Id = Guid.NewGuid().ToString(),
                 Title = command.Title,
+                CreatedBy = command.UserName
             };
-            await _repositoryContext.Save<WhiteBoard>("db", whiteBoard);
+            await _repositoryContext.Save<WhiteBoard>(Db.Name, whiteBoard);
             var expandoObject = new ExpandoObject();
             expandoObject.TryAdd("id", whiteBoard.Id);
             return expandoObject;
