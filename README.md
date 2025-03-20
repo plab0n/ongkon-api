@@ -1,6 +1,14 @@
 # Ongkon API
 
-Ongkon API is a .NET 7.0 Web API project that provides a backend service for managing whiteboards and their elements. The project follows a clean architecture pattern with separate layers for business logic, data access, and API endpoints.
+Ongkon is a collaborative whiteboard platform that enables multiple users to draw and work together in real-time. This repository contains the backend API service that powers the collaborative features of Ongkon.
+
+## About Ongkon
+
+Ongkon provides a seamless collaborative drawing experience where:
+- Multiple users can draw simultaneously on the same whiteboard
+- Real-time synchronization of drawings and elements
+- Support for various drawing elements including nodes, connectors, and annotations
+- Cross-platform compatibility through a web-based interface
 
 ## Project Structure
 
@@ -18,11 +26,12 @@ The solution consists of the following projects:
 
 ## Features
 
-- Whiteboard management
+- Real-time collaborative whiteboard functionality
+- Multi-user support with concurrent editing
 - Element manipulation (nodes, connectors)
-- Node annotations
-- Real-time updates
-- CORS support
+- Node annotations and comments
+- Real-time updates and synchronization
+- CORS support for cross-origin requests
 - Swagger/OpenAPI documentation
 
 ## Getting Started
